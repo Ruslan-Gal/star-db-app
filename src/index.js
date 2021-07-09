@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import SwapiService from './services/swapi-service';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const r = new SwapiService();
+// r.getPerson(1).then((d) => console.log(d.name));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+import Header from './components/Header';
+import RandomPlanet from './components/RandomPlanet';
+import ItemList from './components/ItemList';
+import PersonDetails from './components/PersonDetails';
+
+import './common/styles/app.scss';
+
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <RandomPlanet />
+
+        <div className='row mb2'>
+          <div className='col-md-6'>
+            <ItemList />
+          </div>
+          <div className='col-md-6'>
+            <PersonDetails />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+render(<App />, document.getElementById('root'));
