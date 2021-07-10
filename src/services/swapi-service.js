@@ -61,7 +61,7 @@ export default class SwapiService {
       id: this._extractId(planet),
       name: planet.name,
       population: planet.population,
-      rorationPeriod: planet.roration_period,
+      rorationPeriod: planet.rotation_period,
       diameter: planet.diameter,
     };
   }
