@@ -10,7 +10,7 @@ import './common/styles/app.scss';
 
 export default class App extends Component {
   state = {
-    selectedPerson: null,
+    selectedPerson: 4,
   };
 
   onPersonSelected = (id) => {
