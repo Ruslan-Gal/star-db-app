@@ -3,34 +3,36 @@ import { render } from 'react-dom';
 
 import Header from './components/Header';
 import RandomPlanet from './components/RandomPlanet';
-import ItemList from './components/ItemList';
-import PersonDetails from './components/PersonDetails';
+import ErrorButton from './components/ErrorButton';
+import ErrorIndicator from './components/ErrorIndicator';
+import PeoplePage from './components/PeoplePage';
 
 import './common/styles/app.scss';
 
 export default class App extends Component {
   state = {
-    selectedPerson: 4,
+    hasError: false,
   };
 
-  onPersonSelected = (id) => {
-    this.setState({ selectedPerson: id });
-  };
+  componentDidCatch() {
+    console.log('componentDidCatch');
+    this.setState({ hasError: true });
+  }
 
   render() {
+    if (this.state.hasError) {
+      return <ErrorIndicator />;
+    }
     return (
-      <div>
+      <div className='stardb-app'>
         <Header />
         <RandomPlanet />
 
-        <div className='row mb2'>
-          <div className='col-md-6'>
-            <ItemList onItemSelected={this.onPersonSelected} />
-          </div>
-          <div className='col-md-6'>
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
+        <div className='row mb2 button-row'>
+          <ErrorButton />
         </div>
+
+        <PeoplePage />
       </div>
     );
   }
