@@ -5,10 +5,6 @@ export default class ErrorButton extends Component {
     renderError: false,
   };
 
-  componentDidCatch() {
-    this.setState({ renderError: true });
-  }
-
   render() {
     if (this.state.renderError) {
       this.foo.bar = 0;
